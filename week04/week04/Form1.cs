@@ -65,6 +65,7 @@ namespace week04
                 xlApp = null;
             }
         }
+
         private void CreateTable()
         {
             string[] headers = new string[] {
@@ -104,7 +105,7 @@ namespace week04
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "=" + GetCell(counter, 7) + "/" + GetCell(counter, 6);
+                values[counter, 8] = "=" + GetCell(counter, 8) + "/" + GetCell(counter, 7);
                 counter++;
             }
             xlSheet.get_Range(
