@@ -105,7 +105,7 @@ namespace week04
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "=" + GetCell(counter, 8) + "/" + GetCell(counter, 7);
+                values[counter, 8] = "=" + GetCell(counter+2, 8) + "/" + GetCell(counter+2, 7);
                 counter++;
             }
             xlSheet.get_Range(
@@ -144,14 +144,14 @@ namespace week04
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
             int lastRowID = xlSheet.UsedRange.Rows.Count;
-            Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), lastRowID);
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(headers.Length, lastRowID));
             tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
             Excel.Range firstColumnRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1,Flats.Count));
             firstColumnRange.Font.Bold = true;
             firstColumnRange.Interior.Color = Color.LightYellow;
 
-            Excel.Range lastColumnRange = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(Flats.Count, headers.Length));
+            Excel.Range lastColumnRange = xlSheet.get_Range(GetCell(2, headers.Length), GetCell(Flats.Count+1, headers.Length));
             lastColumnRange.Interior.Color = Color.LightGreen;
             lastColumnRange.NumberFormat = "#,##0.00";
         }
