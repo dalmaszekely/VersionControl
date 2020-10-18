@@ -35,7 +35,17 @@ namespace week06
             var response = mnbService.GetCurrencies(request);
             var result = response.GetCurrenciesResult;
 
-            //az xml nem sikerült, nemtudom hogyan kéne
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                var rate = new RateData();
+                Rates.Add(rate);
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                rate.Currency = childElement.GetAttribute("curr");
+            }
         }
 
         private void RefreshData()
