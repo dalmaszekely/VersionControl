@@ -30,11 +30,12 @@ namespace week06
         {
             var mnbService = new MNBArfolyamServiceSoapClient();
 
-            var request = new GetCurrenciesRequestBody()
-            {
-            };
+            var request = new GetCurrenciesRequestBody();
 
             var response = mnbService.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
+
+            //az xml nem sikerült, nemtudom hogyan kéne
         }
 
         private void RefreshData()
@@ -75,6 +76,10 @@ namespace week06
 
                 // Valuta
                 var childElement = (XmlElement)element.ChildNodes[0];
+
+                if (childElement == null)
+                    continue;
+
                 rate.Currency = childElement.GetAttribute("curr");
 
                 // Érték
